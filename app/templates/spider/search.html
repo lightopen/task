@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>股票信息查询</title>
+</head>
+
+<body>
+
+{% import "bootstrap/wtf.html" as wtf %}
+<div style="width: 40%; margin: auto">
+{{ wtf.quick_form(form) }}
+</div>
+
+{% block flash %}
+<div>
+    <ul>
+        {% for message in get_flashed_messages() %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block show %}
+<div style="width: 40%; margin: auto;">
+    <table border="1">
+        {% if code %}
+        <tr>
+            <th colspan='2'>{{code}}</th>
+        </tr>
+        {% endif %}
+        {% for info in info_list %}
+        <tr>
+        <th>{{info[0]}}</th>
+        <td>{{info[1]}}</td>
+        {% endfor %}
+        </tr>
+    </table>
+    {% if image %}
+        <img src="{{image}}" width="300px" height="180px" />
+    {% endif %}
+</div>
+{% endblock %}
+
+</body>
+
+</html>

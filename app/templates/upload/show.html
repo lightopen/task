@@ -1,0 +1,18 @@
+
+<html>
+<head>
+    <title>Show</title>
+</head>
+
+<body>
+
+</body>
+
+<h1>图片展示</h1>
+<ul>
+{% for image in images %}
+<li><img src="{{url_for('static', filename='images/'+image.filename)}}" style="width: 100px; height: 100px;" /></li>
+{% endfor %}
+</ul>
+
+</html>
