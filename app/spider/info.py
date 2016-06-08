@@ -1,12 +1,20 @@
+# coding=utf-8
 import requests
 from bs4 import BeautifulSoup
 import re
 
+# 为了数据在数据库的存储，将数据转化为值为“标签”和“数值”组成的元组的字典
 legal = ["a1", "a2", 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15']
 
+def for_model(info_list):
+    for_model_d = {}
+    i = 0
+    while i < 15:
+        for_model_d[legal[i]] = str(info_list[i])
+        i += 1
+    return for_model_d
 
-
-
+# 抽象出来重复的解析过程
 def table_parser(table):
     soup = BeautifulSoup(table, 'html.parser', from_encoding='utf-8')
     ths = soup.find_all('th')
@@ -25,7 +33,7 @@ def table_parser(table):
         i += 1
     return l
 
-
+# 爬虫程序， 返回一个信息list，股票完整代码字符串，和图表url字符床，解析失败则全部返回false
 def get_info(code):
     r = requests.get("http://finance.yahoo.com/q;_ylt=Avwusdy.Ly1HO8mOg5ASa9FZM_J_?uhb=uhb2&fr=uh3_finance_vert_gs&type=2button&s=%s"
                  % code)
@@ -43,15 +51,6 @@ def get_info(code):
     return l1, title, image
 
 
-def for_model(info_list):
-    for_model_d = {}
-    i = 0
-    while i < 15:
-        for_model_d[legal[i]] = str(info_list[i])
-        i += 1
-    return for_model_d
 
 
 
-l, s, m = get_info('fb')
-print(for_model(l))

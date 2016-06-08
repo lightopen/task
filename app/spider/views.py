@@ -15,7 +15,7 @@ def search():
     image = ""
     if form.validate_on_submit():
         info_list, code, image= get_info(form.code.data)
-        if info_list:
+        if info_list:   # 判定用户输入是否解析成功
             for_model_d = for_model(info_list)
             print(len(for_model_d))
             value = Value(code=code, image=image, **for_model_d)

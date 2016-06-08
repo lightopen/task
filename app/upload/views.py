@@ -23,7 +23,7 @@ def img_upload():
     if form.validate_on_submit():
         f = request.files['file']
         if file_is_allowed(f.filename):
-            # 生成一组十位字符床作为服务器文件名，防止用户图片名重复
+            # 生成一组十位字符串作为服务器文件名，防止用户图片名重复
             filename = gen_salt(10)+"."+f.filename.split('.')[-1]
             f.save(os.path.join(folder, filename))
             image = Image(filename=filename)
@@ -33,7 +33,7 @@ def img_upload():
         return render_template("upload/fail.html")
     return render_template('upload/upload.html', form=form)
 
-# 以列表的形式展示已上传的图片
+# 以列表的形式展示已上传的图片，没有链接指向本页面
 @upload.route("/show")
 def show():
     images = Image.query.all()
