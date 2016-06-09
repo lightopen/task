@@ -1,10 +1,9 @@
 from flask import render_template, url_for, flash
 from .. import db
 from . import spider
-from ..forms import *
-from ..models import *
+from ..forms import SearchForm
+from ..models import Value
 from .info import get_info, for_model
-
 
 
 @spider.route("/", methods=["GET", "POST"])
