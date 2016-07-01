@@ -1,6 +1,7 @@
 from flask import render_template, url_for
 from . import homepage
-from .forms import SignupForm
+from ..forms import SignupForm
+from .. import bootstrap
 
 
 # index页面指向两个功能页
