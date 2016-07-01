@@ -4,7 +4,7 @@ from ..forms import SignupForm
 from .. import bootstrap
 
 
-# index页面指向两个功能页
+
 @homepage.route("/")
 def index():
     return render_template("index.html")
